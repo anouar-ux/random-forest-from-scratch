@@ -18,7 +18,7 @@ python scaffold.py
 - [x] **6.** leaf_prediction
 - [x] **7.** build_tree
 - [x] **8.** predict_example_tree
-- [ ] **9.** predict_tree
+- [x] **9.** predict_tree
 - [ ] **10.** bootstrap_sample
 - [ ] **11.** feature_subset
 - [ ] **12.** train_forest
