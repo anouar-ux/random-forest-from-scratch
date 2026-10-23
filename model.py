@@ -200,8 +200,21 @@ def combine_predictions(tree_predictions):
 
     return result
 
-# Step 14 - predict_forest (not yet solved)
-# TODO: implement
+# Step 14 - predict_forest
+def predict_forest(forest, features):
+    # TODO: predict classes for a dataset using the whole trained forest.
+
+    T,n=len(forest),features.shape[0]
+    tree_predictions=np.zeros((T,n))
+
+    result=np.zeros(n)
+
+    for k in range(len(forest)):
+        dico=forest[k]
+        tree=dico['tree']
+        tree_predictions[k]=predict_tree(tree,features)
+
+    return combine_predictions(tree_predictions)
 
 # Step 15 - accuracy (not yet solved)
 # TODO: implement
