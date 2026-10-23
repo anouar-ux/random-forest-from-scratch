@@ -153,11 +153,37 @@ def bootstrap_sample(features, labels, rng):
 
     return (features[idx],labels[idx])
 
-# Step 11 - feature_subset (not yet solved)
-# TODO: implement
+# Step 11 - feature_subset
+import numpy as np
 
-# Step 12 - train_forest (not yet solved)
-# TODO: implement
+def feature_subset(num_features, num_to_pick, rng):
+    # TODO: return num_to_pick distinct random feature indices from range(num_features) using rng.
+    idx=rng.permutation(num_features)[:num_to_pick]
+    
+    return idx
+
+# Step 12 - train_forest
+import numpy as np
+
+def train_forest(features, labels, num_trees=10, max_depth=10, min_samples_split=2, num_features_per_split=None, random_state=0):
+    # TODO: grow num_trees decision trees on bootstrap samples with random feature subsets.
+
+    n,m=features.shape
+    rng=np.random.default_rng(random_state)
+    result=[]
+
+    if num_features_per_split is None:
+        num_features_per_split=max(1,round(m**0.5))
+
+
+    for _ in range(num_trees):
+        X_boot,y_boot=bootstrap_sample(features, labels, rng)
+        features_sub=feature_subset(m,num_features_per_split,rng)
+        tree=build_tree(X_boot,y_boot,max_depth,min_samples_split,features_sub,depth=0)
+        dico={'tree':tree, 'feature_indices':features_sub}
+        result.append(dico)
+
+    return result
 
 # Step 13 - combine_predictions (not yet solved)
 # TODO: implement
